@@ -4,21 +4,37 @@ using UnityEngine;
 
 public class Node : MonoBehaviour 
 {
+	[Header("Links")]
 	[SerializeField] GameObject geometry;
 	[SerializeField] GameObject linkPrefab;
-	[SerializeField] LayerMask obstacleLayer;
-	[SerializeField] float scaleTime = 0.3f;
+	[SerializeField] GameObject goalPrefab;
+
+	[Header("Animation")]
 	[SerializeField] iTween.EaseType easeType = iTween.EaseType.easeInSine;
+	[SerializeField] float scaleTime = 0.3f;
 	[SerializeField] float delay = 1f;
-	[SerializeField] bool[] blockedLink = { false, false, false, false }; 
+	[Space]
+	[SerializeField] iTween.EaseType goalEaseType = iTween.EaseType.easeInSine;
+	[SerializeField] float goalScaleTime = 0.3f;
+
+
+	[Header("Parameters")]
+	[SerializeField] bool isStartNode = false;
+	public bool IsStartNode { get { return isStartNode; } }
+
+	[SerializeField] bool isGoalNode = false;
+	public bool IsGoalNode { get { return isGoalNode; } }
+
+	[SerializeField] bool[] blockedLink = { false, false, false, false };
+	[SerializeField] LayerMask obstacleLayer;
 
 	Vector2Int coordinate;
 	public Vector2Int Coordinate { get { return coordinate; } }
 
-	[SerializeField] List<Node> neighbours = new List<Node>();
+	List<Node> neighbours = new List<Node>();
 	public List<Node> Neighbours { get { return neighbours; } }
 
-	[SerializeField] List<Node> linkedNodes = new List<Node>();
+	List<Node> linkedNodes = new List<Node>();
 	public List<Node> LinkedNodes { get { return linkedNodes; } }
 
 	bool isInitialized = false;
@@ -71,7 +87,17 @@ public class Node : MonoBehaviour
 				"time", scaleTime,
 				"delay", delay,
 				"easetype", easeType
+			));
+
+			if (IsGoalNode) {
+				GameObject goal = Instantiate(goalPrefab, transform.position, Quaternion.identity, transform);
+				iTween.ScaleFrom(goal, iTween.Hash(
+					"scale", Vector3.zero,
+					"time", goalScaleTime,
+					"delay", delay,
+					"easetype", goalEaseType
 				));
+			}
 		}
 	}
 

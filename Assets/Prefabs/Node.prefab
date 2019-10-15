@@ -47,15 +47,20 @@ MonoBehaviour:
   geometry: {fileID: 5063430227029716237}
   linkPrefab: {fileID: 243405116709278540, guid: c4cdaa8ca8a8bff47b74d9eaa05b6a60,
     type: 3}
+  goalPrefab: {fileID: 321213248484512353, guid: ddfd5cceb7690bc41b150be4ba8330b1,
+    type: 3}
+  easeType: 24
+  scaleTime: 0.5
+  delay: 0.3
+  goalEaseType: 21
+  goalScaleTime: 0.5
+  goalDelay: 0.3
+  isStartNode: 0
+  isGoalNode: 0
+  blockedLink: 00000000
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 512
-  autoRun: 0
-  scaleTime: 0.5
-  easeType: 24
-  delay: 0.3
-  neighbours: []
-  linkedNodes: []
 --- !u!1001 &3847490118350517252
 PrefabInstance:
   m_ObjectHideFlags: 0

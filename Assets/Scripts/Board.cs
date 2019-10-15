@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SOG.Utilities;
 
-public class Board : MonoBehaviour {
+public class Board : Singleton<Board> {
 	public static int spacing = 2;
 
 	public static readonly Vector2Int[] directions = {
@@ -12,11 +13,17 @@ public class Board : MonoBehaviour {
 		Vector2Int.left * spacing
 	};
 
-	[SerializeField] List<Node> nodes = new List<Node>();
+	List<Node> nodes = new List<Node>();
 	public List<Node> Nodes { get { return nodes; } }
 
 	Node playerNode;
 	public Node PlayerNode { get { return playerNode; } }
+
+	Node startNode;
+	public Node StartNode { get { return startNode; } }
+
+	Node goalNode;
+	public Node GoalNode { get { return goalNode; } }
 
 	CharacterMover player;
 
@@ -24,22 +31,25 @@ public class Board : MonoBehaviour {
 		player = FindObjectOfType<CharacterMover>();
 		GetNodeList();
 	}
-
-	void Start () {
-		if (player != null) {
-			UpdatePlayerNode();
-			if (playerNode != null) {
-				playerNode.InitNode();
-			}
-		}
-	}
-
+	
 	void OnEnable () {
 		CharacterMover.notifyCharacterMoveObservers += UpdatePlayerNode;
 	}
 
 	void OnDisable () {
 		CharacterMover.notifyCharacterMoveObservers -= UpdatePlayerNode;
+	}
+
+	public void InitBoard () {
+		if (player != null) {
+			FindStartNode();
+			FindGoalNode();
+			player.transform.position = startNode.transform.position;
+			UpdatePlayerNode();
+			if (playerNode != null) {
+				playerNode.InitNode();
+			}
+		}
 	}
 
 	public void GetNodeList () {
@@ -61,6 +71,20 @@ public class Board : MonoBehaviour {
 
 	public void UpdatePlayerNode () {
 		playerNode = FindPlayerNode();
+	}
+
+	public Node FindStartNode () {
+		if (startNode == null) {
+			startNode = Nodes.Find(n => n.IsStartNode);
+		}
+		return startNode;
+	}
+
+	public Node FindGoalNode () {
+		if (goalNode == null) {
+			goalNode = Nodes.Find(n => n.IsGoalNode);
+		}
+		return GoalNode;
 	}
 
 	void OnDrawGizmos () {

@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SOG.Utilities;
 
 [RequireComponent(typeof(CharacterMover))]
 [RequireComponent(typeof(PlayerInput))]
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : Singleton<PlayerManager>
 {
 	private CharacterMover characterMover;
 	public CharacterMover CharacterMover { get { return characterMover; } }
