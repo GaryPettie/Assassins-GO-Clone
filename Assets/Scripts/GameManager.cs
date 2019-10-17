@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using SOG.Utilities;
 
 public class GameManager : Singleton<GameManager> {
+	public UnityEvent preGameEvent;
 	public UnityEvent startLevelEvent;
 	public UnityEvent playLevelEvent;
 	public UnityEvent endLevelEvent;
@@ -25,7 +26,7 @@ public class GameManager : Singleton<GameManager> {
 	public bool IsGameOver { get { return isGameOver; } }
 
 	bool hasLevelFinished = false;
-	public bool HasLevelFinished { get { return hasLevelFinished; } }
+	public bool HasLevelFinished { get { return hasLevelFinished; } set { hasLevelFinished = value; } }
 
 
 	void Awake () {
@@ -51,6 +52,13 @@ public class GameManager : Singleton<GameManager> {
 		SceneManager.LoadScene(scene.name);
 	}
 
+	bool IsWinner () {
+		if (board.PlayerNode == board.GoalNode) {
+			return true;
+		}
+		return false;
+	}
+
 	IEnumerator RunGameLoop () {
 		yield return StartCoroutine(StartLevelRoutine());
 		yield return StartCoroutine(PlayLevelRoutine());
@@ -60,6 +68,10 @@ public class GameManager : Singleton<GameManager> {
 	IEnumerator StartLevelRoutine () {
 		Debug.Log("Start Level");
 		player.PlayerInput.InputEnabled = false;
+
+		if (preGameEvent != null) {
+			preGameEvent.Invoke();
+		}
 
 		while (!hasLevelStarted) {
 			//Wait for button press to start level...
@@ -82,9 +94,13 @@ public class GameManager : Singleton<GameManager> {
 		}
 
 		while (!isGameOver) {
-			//Wait for game over condition...
-			//isGameOver = true;
 			yield return null;
+
+			//Win Conditions
+			isGameOver = IsWinner();
+
+			//Lose Conditions
+
 		}
 	}
 

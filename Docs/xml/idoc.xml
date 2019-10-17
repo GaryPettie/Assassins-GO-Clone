@@ -1,0 +1,443 @@
+<members>
+  <Board>
+    <signature>Board</signature>
+    <childcount>22</childcount>
+    <type>Class</type>
+    <name>Board</name>
+    <token>public class Board : Singleton&lt;Board&gt; </token>
+    <scope></scope>
+  </Board>
+  <Board.spacing>
+    <signature>Board.spacing</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>spacing</name>
+    <token>public static int spacing </token>
+    <scope>Board</scope>
+  </Board.spacing>
+  <Board.directions>
+    <signature>Board.directions</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>directions</name>
+    <token>public static readonly Vector2Int[] directions = {
+		Vector2Int.up * spacing,
+		Vector2Int.right * spacing,
+		Vector2Int.down * spacing,
+		Vector2Int.left * spacing
+	};</token>
+    <scope>Board</scope>
+  </Board.directions>
+  <Board.Nodes>
+    <signature>Board.Nodes</signature>
+    <childcount>0</childcount>
+    <type>Property</type>
+    <name>Nodes</name>
+    <token>public List&lt;Node&gt; Nodes { get; }</token>
+    <scope>Board</scope>
+  </Board.Nodes>
+  <Board.PlayerNode>
+    <signature>Board.PlayerNode</signature>
+    <childcount>0</childcount>
+    <type>Property</type>
+    <name>PlayerNode</name>
+    <token>public Node PlayerNode { get; }</token>
+    <scope>Board</scope>
+  </Board.PlayerNode>
+  <Board.StartNode>
+    <signature>Board.StartNode</signature>
+    <childcount>0</childcount>
+    <type>Property</type>
+    <name>StartNode</name>
+    <token>public Node StartNode { get; }</token>
+    <scope>Board</scope>
+  </Board.StartNode>
+  <Board.GoalNode>
+    <signature>Board.GoalNode</signature>
+    <childcount>0</childcount>
+    <type>Property</type>
+    <name>GoalNode</name>
+    <token>public Node GoalNode { get; }</token>
+    <scope>Board</scope>
+  </Board.GoalNode>
+  <Board.InitBoard_x0028__x0029_>
+    <signature>Board.InitBoard()</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>InitBoard</name>
+    <token>public void InitBoard()</token>
+    <scope>Board</scope>
+  </Board.InitBoard_x0028__x0029_>
+  <Board.GetNodeList_x0028__x0029_>
+    <signature>Board.GetNodeList()</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>GetNodeList</name>
+    <token>public void GetNodeList()</token>
+    <scope>Board</scope>
+  </Board.GetNodeList_x0028__x0029_>
+  <Board.FindNodeAt_x0028_Vector3_x0029_>
+    <signature>Board.FindNodeAt(Vector3)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>FindNodeAt</name>
+    <token>public Node FindNodeAt(Vector3 position)</token>
+    <scope>Board</scope>
+    <params>
+      <position>Vector3</position>
+    </params>
+  </Board.FindNodeAt_x0028_Vector3_x0029_>
+  <Board.FindPlayerNode_x0028__x0029_>
+    <signature>Board.FindPlayerNode()</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>FindPlayerNode</name>
+    <token>public Node FindPlayerNode()</token>
+    <scope>Board</scope>
+  </Board.FindPlayerNode_x0028__x0029_>
+  <Board.UpdatePlayerNode_x0028__x0029_>
+    <signature>Board.UpdatePlayerNode()</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>UpdatePlayerNode</name>
+    <token>public void UpdatePlayerNode()</token>
+    <scope>Board</scope>
+  </Board.UpdatePlayerNode_x0028__x0029_>
+  <Board.FindStartNode_x0028__x0029_>
+    <signature>Board.FindStartNode()</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>FindStartNode</name>
+    <token>public Node FindStartNode()</token>
+    <scope>Board</scope>
+  </Board.FindStartNode_x0028__x0029_>
+  <Board.FindGoalNode_x0028__x0029_>
+    <signature>Board.FindGoalNode()</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>FindGoalNode</name>
+    <token>public Node FindGoalNode()</token>
+    <scope>Board</scope>
+  </Board.FindGoalNode_x0028__x0029_>
+  <CharacterMover>
+    <signature>CharacterMover</signature>
+    <childcount>11</childcount>
+    <type>Class</type>
+    <name>CharacterMover</name>
+    <token>public class CharacterMover : MonoBehaviour </token>
+    <scope></scope>
+  </CharacterMover>
+  <CharacterMover.OnCharacterMove_x0028__x0029_>
+    <signature>CharacterMover.OnCharacterMove()</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>OnCharacterMove</name>
+    <token>public delegate void OnCharacterMove()</token>
+    <scope>CharacterMover</scope>
+  </CharacterMover.OnCharacterMove_x0028__x0029_>
+  <CharacterMover.notifyCharacterMoveObservers>
+    <signature>CharacterMover.notifyCharacterMoveObservers</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>notifyCharacterMoveObservers</name>
+    <token>public static OnCharacterMove notifyCharacterMoveObservers </token>
+    <scope>CharacterMover</scope>
+  </CharacterMover.notifyCharacterMoveObservers>
+  <CharacterMover.IsMoving>
+    <signature>CharacterMover.IsMoving</signature>
+    <childcount>0</childcount>
+    <type>Property</type>
+    <name>IsMoving</name>
+    <token>public bool IsMoving { get; set; }</token>
+    <scope>CharacterMover</scope>
+  </CharacterMover.IsMoving>
+  <CharacterMover.Move_x0028_Vector3_x002C__x0020_float_x0029_>
+    <signature>CharacterMover.Move(Vector3, float)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>Move</name>
+    <token>public void Move(Vector3 destinationPos, float delayTime = 0f)</token>
+    <scope>CharacterMover</scope>
+    <params>
+      <destinationPos>Vector3</destinationPos>
+      <delayTime>float</delayTime>
+    </params>
+  </CharacterMover.Move_x0028_Vector3_x002C__x0020_float_x0029_>
+  <Fader>
+    <signature>Fader</signature>
+    <childcount>13</childcount>
+    <type>Class</type>
+    <name>Fader</name>
+    <token>public class Fader : MonoBehaviour </token>
+    <scope></scope>
+  </Fader>
+  <Fader.FadeOn_x0028__x0029_>
+    <signature>Fader.FadeOn()</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>FadeOn</name>
+    <token>public void FadeOn()</token>
+    <scope>Fader</scope>
+  </Fader.FadeOn_x0028__x0029_>
+  <Fader.FadeOff_x0028__x0029_>
+    <signature>Fader.FadeOff()</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>FadeOff</name>
+    <token>public void FadeOff()</token>
+    <scope>Fader</scope>
+  </Fader.FadeOff_x0028__x0029_>
+  <GameManager>
+    <signature>GameManager</signature>
+    <childcount>22</childcount>
+    <type>Class</type>
+    <name>GameManager</name>
+    <token>public class GameManager : Singleton&lt;GameManager&gt; </token>
+    <scope></scope>
+  </GameManager>
+  <GameManager.startLevelEvent>
+    <signature>GameManager.startLevelEvent</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>startLevelEvent</name>
+    <token>public UnityEvent startLevelEvent </token>
+    <scope>GameManager</scope>
+  </GameManager.startLevelEvent>
+  <GameManager.playLevelEvent>
+    <signature>GameManager.playLevelEvent</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>playLevelEvent</name>
+    <token>public UnityEvent playLevelEvent </token>
+    <scope>GameManager</scope>
+  </GameManager.playLevelEvent>
+  <GameManager.endLevelEvent>
+    <signature>GameManager.endLevelEvent</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>endLevelEvent</name>
+    <token>public UnityEvent endLevelEvent </token>
+    <scope>GameManager</scope>
+  </GameManager.endLevelEvent>
+  <GameManager.HasLevelStarted>
+    <signature>GameManager.HasLevelStarted</signature>
+    <childcount>0</childcount>
+    <type>Property</type>
+    <name>HasLevelStarted</name>
+    <token>public bool HasLevelStarted { get; }</token>
+    <scope>GameManager</scope>
+  </GameManager.HasLevelStarted>
+  <GameManager.IsGamePlaying>
+    <signature>GameManager.IsGamePlaying</signature>
+    <childcount>0</childcount>
+    <type>Property</type>
+    <name>IsGamePlaying</name>
+    <token>public bool IsGamePlaying { get; }</token>
+    <scope>GameManager</scope>
+  </GameManager.IsGamePlaying>
+  <GameManager.IsGameOver>
+    <signature>GameManager.IsGameOver</signature>
+    <childcount>0</childcount>
+    <type>Property</type>
+    <name>IsGameOver</name>
+    <token>public bool IsGameOver { get; }</token>
+    <scope>GameManager</scope>
+  </GameManager.IsGameOver>
+  <GameManager.HasLevelFinished>
+    <signature>GameManager.HasLevelFinished</signature>
+    <childcount>0</childcount>
+    <type>Property</type>
+    <name>HasLevelFinished</name>
+    <token>public bool HasLevelFinished { get; }</token>
+    <scope>GameManager</scope>
+  </GameManager.HasLevelFinished>
+  <GameManager.PlayLevel_x0028__x0029_>
+    <signature>GameManager.PlayLevel()</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>PlayLevel</name>
+    <token>public void PlayLevel()</token>
+    <scope>GameManager</scope>
+    <comments>
+      <summary>Sets hasPlayerStarted to true.</summary>
+    </comments>
+  </GameManager.PlayLevel_x0028__x0029_>
+  <Link>
+    <signature>Link</signature>
+    <childcount>6</childcount>
+    <type>Class</type>
+    <name>Link</name>
+    <token>public class Link : MonoBehaviour </token>
+    <scope></scope>
+  </Link>
+  <Link.DrawLink_x0028_Vector3_x002C__x0020_Vector3_x0029_>
+    <signature>Link.DrawLink(Vector3, Vector3)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>DrawLink</name>
+    <token>public void DrawLink(Vector3 startPos, Vector3 endPos)</token>
+    <scope>Link</scope>
+    <params>
+      <startPos>Vector3</startPos>
+      <endPos>Vector3</endPos>
+    </params>
+  </Link.DrawLink_x0028_Vector3_x002C__x0020_Vector3_x0029_>
+  <Node>
+    <signature>Node</signature>
+    <childcount>32</childcount>
+    <type>Class</type>
+    <name>Node</name>
+    <token>public class Node : MonoBehaviour </token>
+    <scope></scope>
+  </Node>
+  <Node.IsStartNode>
+    <signature>Node.IsStartNode</signature>
+    <childcount>0</childcount>
+    <type>Property</type>
+    <name>IsStartNode</name>
+    <token>public bool IsStartNode { get; }</token>
+    <scope>Node</scope>
+  </Node.IsStartNode>
+  <Node.IsGoalNode>
+    <signature>Node.IsGoalNode</signature>
+    <childcount>0</childcount>
+    <type>Property</type>
+    <name>IsGoalNode</name>
+    <token>public bool IsGoalNode { get; }</token>
+    <scope>Node</scope>
+  </Node.IsGoalNode>
+  <Node.Coordinate>
+    <signature>Node.Coordinate</signature>
+    <childcount>0</childcount>
+    <type>Property</type>
+    <name>Coordinate</name>
+    <token>public Vector2Int Coordinate { get; }</token>
+    <scope>Node</scope>
+  </Node.Coordinate>
+  <Node.Neighbours>
+    <signature>Node.Neighbours</signature>
+    <childcount>0</childcount>
+    <type>Property</type>
+    <name>Neighbours</name>
+    <token>public List&lt;Node&gt; Neighbours { get; }</token>
+    <scope>Node</scope>
+  </Node.Neighbours>
+  <Node.LinkedNodes>
+    <signature>Node.LinkedNodes</signature>
+    <childcount>0</childcount>
+    <type>Property</type>
+    <name>LinkedNodes</name>
+    <token>public List&lt;Node&gt; LinkedNodes { get; }</token>
+    <scope>Node</scope>
+  </Node.LinkedNodes>
+  <Node.InitNode_x0028__x0029_>
+    <signature>Node.InitNode()</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>InitNode</name>
+    <token>public void InitNode()</token>
+    <scope>Node</scope>
+  </Node.InitNode_x0028__x0029_>
+  <Node.ShowGeometry_x0028__x0029_>
+    <signature>Node.ShowGeometry()</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>ShowGeometry</name>
+    <token>public void ShowGeometry()</token>
+    <scope>Node</scope>
+  </Node.ShowGeometry_x0028__x0029_>
+  <Node.FindNeighbours_x0028_List_x003C_Node_x003E__x0029_>
+    <signature>Node.FindNeighbours(List&lt;Node&gt;)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>FindNeighbours</name>
+    <token>public List&lt;Node&gt; FindNeighbours(List&lt;Node&gt; nodes)</token>
+    <scope>Node</scope>
+    <params>
+      <nodes>List&lt;Node&gt;</nodes>
+    </params>
+  </Node.FindNeighbours_x0028_List_x003C_Node_x003E__x0029_>
+  <Obstacle>
+    <signature>Obstacle</signature>
+    <childcount>3</childcount>
+    <type>Class</type>
+    <name>Obstacle</name>
+    <token>[RequireComponent(typeof(BoxCollider))]
+public class Obstacle : MonoBehaviour </token>
+    <scope></scope>
+  </Obstacle>
+  <PlayerInput>
+    <signature>PlayerInput</signature>
+    <childcount>7</childcount>
+    <type>Class</type>
+    <name>PlayerInput</name>
+    <token>public class PlayerInput : MonoBehaviour </token>
+    <scope></scope>
+  </PlayerInput>
+  <PlayerInput.HorizontalThrow>
+    <signature>PlayerInput.HorizontalThrow</signature>
+    <childcount>0</childcount>
+    <type>Property</type>
+    <name>HorizontalThrow</name>
+    <token>public float HorizontalThrow { get; }</token>
+    <scope>PlayerInput</scope>
+  </PlayerInput.HorizontalThrow>
+  <PlayerInput.VerticalThrow>
+    <signature>PlayerInput.VerticalThrow</signature>
+    <childcount>0</childcount>
+    <type>Property</type>
+    <name>VerticalThrow</name>
+    <token>public float VerticalThrow { get; }</token>
+    <scope>PlayerInput</scope>
+  </PlayerInput.VerticalThrow>
+  <PlayerInput.InputEnabled>
+    <signature>PlayerInput.InputEnabled</signature>
+    <childcount>0</childcount>
+    <type>Property</type>
+    <name>InputEnabled</name>
+    <token>public bool InputEnabled { get; set; }</token>
+    <scope>PlayerInput</scope>
+  </PlayerInput.InputEnabled>
+  <PlayerInput.GetKeyInput_x0028__x0029_>
+    <signature>PlayerInput.GetKeyInput()</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>GetKeyInput</name>
+    <token>public void GetKeyInput()</token>
+    <scope>PlayerInput</scope>
+  </PlayerInput.GetKeyInput_x0028__x0029_>
+  <PlayerManager>
+    <signature>PlayerManager</signature>
+    <childcount>8</childcount>
+    <type>Class</type>
+    <name>PlayerManager</name>
+    <token>[RequireComponent(typeof(CharacterMover))]
+[RequireComponent(typeof(PlayerInput))]
+public class PlayerManager : Singleton&lt;PlayerManager&gt; </token>
+    <scope></scope>
+  </PlayerManager>
+  <PlayerManager.CharacterMover>
+    <signature>PlayerManager.CharacterMover</signature>
+    <childcount>0</childcount>
+    <type>Property</type>
+    <name>CharacterMover</name>
+    <token>public CharacterMover CharacterMover { get; }</token>
+    <scope>PlayerManager</scope>
+  </PlayerManager.CharacterMover>
+  <PlayerManager.PlayerInput>
+    <signature>PlayerManager.PlayerInput</signature>
+    <childcount>0</childcount>
+    <type>Property</type>
+    <name>PlayerInput</name>
+    <token>public PlayerInput PlayerInput { get; }</token>
+    <scope>PlayerManager</scope>
+  </PlayerManager.PlayerInput>
+  <Spinner>
+    <signature>Spinner</signature>
+    <childcount>4</childcount>
+    <type>Class</type>
+    <name>Spinner</name>
+    <token>public class Spinner : MonoBehaviour </token>
+    <scope></scope>
+  </Spinner>
+</members>

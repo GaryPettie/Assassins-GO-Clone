@@ -6,8 +6,7 @@ using SOG.Utilities;
 [RequireComponent(typeof(CharacterMover))]
 [RequireComponent(typeof(PlayerInput))]
 
-public class PlayerManager : Singleton<PlayerManager>
-{
+public class PlayerManager : Singleton<PlayerManager> {
 	private CharacterMover characterMover;
 	public CharacterMover CharacterMover { get { return characterMover; } }
 
@@ -62,5 +61,5 @@ public class PlayerManager : Singleton<PlayerManager>
 				characterMover.Move(destinationPos);
 			}
 		}
-	}
+	} 
 }
