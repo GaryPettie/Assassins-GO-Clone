@@ -25,13 +25,31 @@ public class Board : Singleton<Board> {
 	Node goalNode;
 	public Node GoalNode { get { return goalNode; } }
 
+	[SerializeField]bool isDrawn;
+	public bool IsDrawn { get { return isDrawn; } }
+
 	CharacterMover player;
 
 	void Awake () {
 		player = FindObjectOfType<CharacterMover>();
 		GetNodeList();
 	}
-	
+
+	void Update () {
+		if (!isDrawn) {
+			int count = 0;
+			for (int i = 0; i < nodes.Count; i++) {
+				if (nodes[i].IsInitialized) {
+					count++;
+				}
+			}
+			Debug.Log(count + " == " + nodes.Count);
+			if (count == nodes.Count) {
+				isDrawn = true;
+			}
+		}
+	}
+
 	void OnEnable () {
 		CharacterMover.notifyCharacterMoveObservers += UpdatePlayerNode;
 	}

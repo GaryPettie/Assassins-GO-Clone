@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using SOG.Utilities;
 
 public class GameManager : Singleton<GameManager> {
-	public UnityEvent preGameEvent;
+	public UnityEvent setupEvent;
 	public UnityEvent startLevelEvent;
 	public UnityEvent playLevelEvent;
 	public UnityEvent endLevelEvent;
@@ -69,8 +69,8 @@ public class GameManager : Singleton<GameManager> {
 		Debug.Log("Start Level");
 		player.PlayerInput.InputEnabled = false;
 
-		if (preGameEvent != null) {
-			preGameEvent.Invoke();
+		if (setupEvent != null) {
+			setupEvent.Invoke();
 		}
 
 		while (!hasLevelStarted) {

@@ -38,6 +38,8 @@ public class Node : MonoBehaviour
 	public List<Node> LinkedNodes { get { return linkedNodes; } }
 
 	bool isInitialized = false;
+	public bool IsInitialized { get { return isInitialized; } }
+
 	Board board;
 
 	
