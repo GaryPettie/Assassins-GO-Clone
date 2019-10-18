@@ -23,6 +23,12 @@ public class CharacterMover : MonoBehaviour
 	[SerializeField] float moveDelay = 0f;
 	[SerializeField] float turnDelay = 0f;
 
+	Compass compass;
+
+	void Awake () {
+		compass = FindObjectOfType<Compass>();
+	}
+
 	/// <summary>
 	/// Moves the player to the provided destination after a specified delay.
 	/// </summary>
@@ -34,15 +40,21 @@ public class CharacterMover : MonoBehaviour
 		
 	IEnumerator MoveRoutine (Vector3 destinationPos, float delayTime = 0f) {
 		IsMoving = true;
+
+		if (compass != null) {
+			compass.ShowArrows(false);
+		}
+
 		destination = destinationPos;
 		yield return new WaitForSeconds(delayTime);
 
-		iTween.LookTo(gameObject, iTween.Hash(
-			"looktarget", destinationPos,
-			"delay", turnDelay,
-			"easetype", turnEaseType,
-			"time", turnSpeed
-		));
+		//TODO Disabled this, as it currently breaks the compass. 
+		//iTween.LookTo(gameObject, iTween.Hash(
+		//	"looktarget", destinationPos,
+		//	"delay", turnDelay,
+		//	"easetype", turnEaseType,
+		//	"time", turnSpeed
+		//));
 
 		iTween.MoveTo(gameObject, iTween.Hash(
 			"position", destinationPos,
@@ -58,9 +70,13 @@ public class CharacterMover : MonoBehaviour
 		iTween.Stop(gameObject);
 		transform.position = destinationPos;
 		IsMoving = false;
-
+		
 		if (notifyCharacterMoveObservers != null) {
 			notifyCharacterMoveObservers();
+		}
+
+		if (compass != null) {
+			compass.ShowArrows(true);
 		}
 	}
 }

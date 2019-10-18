@@ -107,13 +107,21 @@ public class Node : MonoBehaviour
 		List<Node> neighbours = new List<Node>();
 
 		foreach (Vector2Int direction in Board.directions) {
-			Node foundNeighbour = nodes.Find(n => n.Coordinate == Coordinate + direction);
+			Node foundNeighbour = FindNeighbourAt(nodes, direction);
 			if (foundNeighbour != null && !neighbours.Contains(foundNeighbour)) {
 				neighbours.Add(foundNeighbour);
 			}
 		}
 
 		return neighbours;
+	}
+
+	public Node FindNeighbourAt (List<Node> nodes, Vector2Int direction) {
+		return nodes.Find(n => n.Coordinate == Coordinate + direction);
+	}
+
+	public Node FindNeighbourAt (Vector2Int direction) {
+		return FindNeighbourAt(neighbours, direction);
 	}
 
 	void LinkNode (Node target) {
