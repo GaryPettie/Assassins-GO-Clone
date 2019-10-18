@@ -14,8 +14,11 @@ public class CharacterMover : MonoBehaviour
 	[SerializeField] float minTargetDistance = 0.01f;
 
 	[SerializeField] float moveSpeed = 1.5f;
-	[SerializeField] iTween.EaseType easeType = iTween.EaseType.easeInOutSine;
-	[SerializeField] float iTweenDelay = 0f;
+	[SerializeField] float turnSpeed = 0.25f;
+	[SerializeField] iTween.EaseType moveEaseType = iTween.EaseType.easeInOutSine;
+	[SerializeField] iTween.EaseType turnEaseType = iTween.EaseType.easeInOutSine;
+	[SerializeField] float moveDelay = 0f;
+	[SerializeField] float turnDelay = 0f;
 
 
 	public void Move (Vector3 destinationPos, float delayTime = 0f) {
@@ -27,12 +30,17 @@ public class CharacterMover : MonoBehaviour
 		destination = destinationPos;
 		yield return new WaitForSeconds(delayTime);
 
+		iTween.LookTo(gameObject, iTween.Hash(
+			"looktarget", destinationPos,
+			"delay", turnDelay,
+			"easetype", turnEaseType,
+			"time", turnSpeed
+		));
+
 		iTween.MoveTo(gameObject, iTween.Hash(
-			"x", destinationPos.x,
-			"y", destinationPos.y,
-			"z", destinationPos.z,
-			"delay", iTweenDelay,
-			"easetype", easeType,
+			"position", destinationPos,
+			"delay", moveDelay,
+			"easetype", moveEaseType,
 			"speed", moveSpeed
 		));
 

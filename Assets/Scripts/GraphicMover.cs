@@ -63,10 +63,6 @@ public class GraphicMover : MonoBehaviour
 		}
 	}
 
-	public void Stop () {
-		iTween.StopByName("anim");
-	}
-
 	public void Move () {
 		switch (mode) {
 			case GraphicMoveMode.MoveTo:

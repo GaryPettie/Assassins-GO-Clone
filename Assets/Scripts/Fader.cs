@@ -3,41 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(MaskableGraphic))]
 public class Fader : MonoBehaviour
 {
+	//TODO Break this class up to add to individual maskablegraphics. Otherwise color has to be the same for all.
+
 	Color solidColor = Color.white;
 	Color clearColor = new Color(1f, 1f, 1f, 0);
 
 	[SerializeField] float delay = 0.5f;
 	[SerializeField] float timeToFade = 1f;
 	[SerializeField] iTween.EaseType easeType = iTween.EaseType.easeOutExpo;
-	[SerializeField] MaskableGraphic[] graphicsToFade;
-	List<Button> buttons = new List<Button>();
-	
+	MaskableGraphic graphicsToFade;
+	Button button;
+
 	void Awake () {
-		for (int i = 0; i < graphicsToFade.Length; i++) {
-			if (graphicsToFade[i].GetComponent<Button>() != null) {
-				buttons.Add(graphicsToFade[i].GetComponent<Button>());
-			}
-		}
+		button = GetComponent<Button>();
+		graphicsToFade = GetComponent<MaskableGraphic>();
+		solidColor = graphicsToFade.color;
+		clearColor = new Color(graphicsToFade.color.r, graphicsToFade.color.g, graphicsToFade.color.b, 0);
 	}
 
 	void UpdateColor (Color newColor) {
-		if (graphicsToFade != null) {
-			foreach (MaskableGraphic graphic in graphicsToFade) {
-				graphic.color = newColor;
-			}
-		}
+		graphicsToFade.color = newColor;
 	}
 
 	void EnableButtons () {
-		foreach (Button button in buttons) {
+		if (button != null) { 
 			button.interactable = true;
 		}
 	}
 
 	void DisableButtons () {
-		foreach (Button button in buttons) {
+		if (button != null) {
 			button.interactable = false;
 		}
 	}

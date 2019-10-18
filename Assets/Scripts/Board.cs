@@ -43,7 +43,6 @@ public class Board : Singleton<Board> {
 					count++;
 				}
 			}
-			Debug.Log(count + " == " + nodes.Count);
 			if (count == nodes.Count) {
 				isDrawn = true;
 			}
