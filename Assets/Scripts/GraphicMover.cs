@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Wrapper class for iTween.RotateBy(gameObject, args), used to animate gameObject in the scene.
+/// </summary>
 public enum GraphicMoveMode { MoveTo, MoveFrom, ScaleTo, ScaleFrom }
 
 public class GraphicMover : MonoBehaviour
@@ -36,6 +39,9 @@ public class GraphicMover : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Resets transform.position or transform.localScale based on the GraphicMoveMode selected.
+	/// </summary>
 	public void Reset () {
 		switch (mode) {
 			case GraphicMoveMode.MoveTo:
@@ -63,6 +69,9 @@ public class GraphicMover : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Wrapper for iTween.MoveTo/From(gameObject, args) and iTween.ScaleTo/From(gameObject, args) based on the GraphicMoveMode selected.
+	/// </summary>
 	public void Move () {
 		switch (mode) {
 			case GraphicMoveMode.MoveTo:

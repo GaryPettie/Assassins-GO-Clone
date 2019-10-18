@@ -5,6 +5,9 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using SOG.Utilities;
 
+/// <summary>
+/// Handles game logic and flow.
+/// </summary>
 public class GameManager : Singleton<GameManager> {
 	public UnityEvent setupEvent;
 	public UnityEvent startLevelEvent;
@@ -43,6 +46,9 @@ public class GameManager : Singleton<GameManager> {
 		}
 	}
 
+	/// <summary>
+	/// Sets hasLevelStarted to true, which is used to break out of the StartLevelRoutine() coroutine.
+	/// </summary>
 	public void PlayLevel () {
 		hasLevelStarted = true;
 	}

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Processes raw player input
+/// </summary>
 public class PlayerInput : MonoBehaviour
 {
 	float horizontalThrow;

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Used to fade Maskable graphic components and enable/disable any button component attached to the same gameObject.
+/// </summary>
 [RequireComponent(typeof(MaskableGraphic))]
 public class Fader : MonoBehaviour
 {
@@ -40,6 +43,10 @@ public class Fader : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Wrapper for iTween.ValueTo(gameObject, args), used to fade a MaskableGraphic alpha from 0 to 1.
+	/// Also enables any attached Button component on the same gameObject.
+	/// /// </summary>
 	public void FadeOn () {
 		iTween.ValueTo(gameObject, iTween.Hash(
 			"from", clearColor,
@@ -53,6 +60,10 @@ public class Fader : MonoBehaviour
 		EnableButtons();
 	}
 
+	/// <summary>
+	/// Wrapper for iTween.ValueTo(gameObject, args), used to fade a MaskableGraphic alpha from 1 to 0.
+	/// Also disables any attached Button component on the same gameObject.
+	/// </summary>
 	public void FadeOff () {
 		iTween.ValueTo(gameObject, iTween.Hash(
 			"from", solidColor,

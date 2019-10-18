@@ -3,15 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using SOG.Utilities;
 
+/// <summary>
+/// Responsible for converting player input into character movement.
+/// </summary>
 [RequireComponent(typeof(CharacterMover))]
 [RequireComponent(typeof(PlayerInput))]
-
 public class PlayerManager : Singleton<PlayerManager> {
 	private CharacterMover characterMover;
 	public CharacterMover CharacterMover { get { return characterMover; } }
 
 	private PlayerInput playerInput;
 	public PlayerInput PlayerInput { get { return playerInput; } }
+
+	Node playerNode;
+	public Node PlayerNode {
+		get {
+			if (board != null) {
+				playerNode = board.PlayerNode;
+			}
+			return playerNode;
+		}
+	}
 
 	Board board;
 
@@ -57,8 +69,9 @@ public class PlayerManager : Singleton<PlayerManager> {
 	void Move (Vector3 destinationPos, float delayTime = 0f) {
 		if (board != null) {
 			Node target = board.FindNodeAt(destinationPos);
-			if (board.IsDrawn && target != null && board.PlayerNode.LinkedNodes.Contains(target)) {
+			if (board.IsDrawn && target != null && PlayerNode.LinkedNodes.Contains(target)) {
 				characterMover.Move(destinationPos);
+				playerNode = board.PlayerNode;
 			}
 		}
 	} 

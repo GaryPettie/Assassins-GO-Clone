@@ -1,7 +1,7 @@
 <members>
   <Board>
     <signature>Board</signature>
-    <childcount>22</childcount>
+    <childcount>25</childcount>
     <type>Class</type>
     <name>Board</name>
     <token>public class Board : Singleton&lt;Board&gt; </token>
@@ -60,6 +60,14 @@
     <token>public Node GoalNode { get; }</token>
     <scope>Board</scope>
   </Board.GoalNode>
+  <Board.IsDrawn>
+    <signature>Board.IsDrawn</signature>
+    <childcount>0</childcount>
+    <type>Property</type>
+    <name>IsDrawn</name>
+    <token>public bool IsDrawn { get; }</token>
+    <scope>Board</scope>
+  </Board.IsDrawn>
   <Board.InitBoard_x0028__x0029_>
     <signature>Board.InitBoard()</signature>
     <childcount>0</childcount>
@@ -121,11 +129,14 @@
   </Board.FindGoalNode_x0028__x0029_>
   <CharacterMover>
     <signature>CharacterMover</signature>
-    <childcount>11</childcount>
+    <childcount>14</childcount>
     <type>Class</type>
     <name>CharacterMover</name>
     <token>public class CharacterMover : MonoBehaviour </token>
     <scope></scope>
+    <comments>
+      <summary>Controls character movement and</summary>
+    </comments>
   </CharacterMover>
   <CharacterMover.OnCharacterMove_x0028__x0029_>
     <signature>CharacterMover.OnCharacterMove()</signature>
@@ -158,18 +169,33 @@
     <name>Move</name>
     <token>public void Move(Vector3 destinationPos, float delayTime = 0f)</token>
     <scope>CharacterMover</scope>
+    <comments>
+      <summary>Moves the player to the provided destination after a specified delay.</summary>
+    </comments>
     <params>
       <destinationPos>Vector3</destinationPos>
       <delayTime>float</delayTime>
     </params>
   </CharacterMover.Move_x0028_Vector3_x002C__x0020_float_x0029_>
+  <Compass>
+    <signature>Compass</signature>
+    <childcount>3</childcount>
+    <type>Class</type>
+    <name>Compass</name>
+    <token>public class Compass : MonoBehaviour </token>
+    <scope></scope>
+  </Compass>
   <Fader>
     <signature>Fader</signature>
     <childcount>13</childcount>
     <type>Class</type>
     <name>Fader</name>
-    <token>public class Fader : MonoBehaviour </token>
+    <token>[RequireComponent(typeof(MaskableGraphic))]
+public class Fader : MonoBehaviour </token>
     <scope></scope>
+    <comments>
+      <summary>Used to fade Maskable graphic components and enable/disable any button component attached to the same gameObject.</summary>
+    </comments>
   </Fader>
   <Fader.FadeOn_x0028__x0029_>
     <signature>Fader.FadeOn()</signature>
@@ -178,6 +204,10 @@
     <name>FadeOn</name>
     <token>public void FadeOn()</token>
     <scope>Fader</scope>
+    <comments>
+      <summary>Wrapper for iTween.ValueTo(gameObject, args), used to fade a MaskableGraphic alpha from 0 to 1.
+	 Also enables any attached Button component on the same gameObject.</summary>
+    </comments>
   </Fader.FadeOn_x0028__x0029_>
   <Fader.FadeOff_x0028__x0029_>
     <signature>Fader.FadeOff()</signature>
@@ -186,15 +216,30 @@
     <name>FadeOff</name>
     <token>public void FadeOff()</token>
     <scope>Fader</scope>
+    <comments>
+      <summary>Wrapper for iTween.ValueTo(gameObject, args), used to fade a MaskableGraphic alpha from 1 to 0.
+	 Also disables any attached Button component on the same gameObject.</summary>
+    </comments>
   </Fader.FadeOff_x0028__x0029_>
   <GameManager>
     <signature>GameManager</signature>
-    <childcount>22</childcount>
+    <childcount>24</childcount>
     <type>Class</type>
     <name>GameManager</name>
     <token>public class GameManager : Singleton&lt;GameManager&gt; </token>
     <scope></scope>
+    <comments>
+      <summary>Handles game logic and flow.</summary>
+    </comments>
   </GameManager>
+  <GameManager.setupEvent>
+    <signature>GameManager.setupEvent</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>setupEvent</name>
+    <token>public UnityEvent setupEvent </token>
+    <scope>GameManager</scope>
+  </GameManager.setupEvent>
   <GameManager.startLevelEvent>
     <signature>GameManager.startLevelEvent</signature>
     <childcount>0</childcount>
@@ -248,7 +293,7 @@
     <childcount>0</childcount>
     <type>Property</type>
     <name>HasLevelFinished</name>
-    <token>public bool HasLevelFinished { get; }</token>
+    <token>public bool HasLevelFinished { get; set; }</token>
     <scope>GameManager</scope>
   </GameManager.HasLevelFinished>
   <GameManager.PlayLevel_x0028__x0029_>
@@ -259,9 +304,82 @@
     <token>public void PlayLevel()</token>
     <scope>GameManager</scope>
     <comments>
-      <summary>Sets hasPlayerStarted to true.</summary>
+      <summary>Sets hasLevelStarted to true, which is used to break out of the StartLevelRoutine() coroutine.</summary>
     </comments>
   </GameManager.PlayLevel_x0028__x0029_>
+  <GraphicMoveMode>
+    <signature>GraphicMoveMode</signature>
+    <childcount>4</childcount>
+    <type>Enum</type>
+    <name>GraphicMoveMode</name>
+    <token>public enum GraphicMoveMode </token>
+    <scope></scope>
+    <comments>
+      <summary>Wrapper class for iTween.RotateBy(gameObject, args), used to animate gameObject in the scene.</summary>
+    </comments>
+  </GraphicMoveMode>
+  <GraphicMoveMode.MoveTo>
+    <signature>GraphicMoveMode.MoveTo</signature>
+    <childcount>0</childcount>
+    <type>EnumValue</type>
+    <name>MoveTo</name>
+    <token>MoveTo</token>
+    <scope>GraphicMoveMode</scope>
+  </GraphicMoveMode.MoveTo>
+  <GraphicMoveMode.MoveFrom>
+    <signature>GraphicMoveMode.MoveFrom</signature>
+    <childcount>0</childcount>
+    <type>EnumValue</type>
+    <name>MoveFrom</name>
+    <token>MoveFrom</token>
+    <scope>GraphicMoveMode</scope>
+  </GraphicMoveMode.MoveFrom>
+  <GraphicMoveMode.ScaleTo>
+    <signature>GraphicMoveMode.ScaleTo</signature>
+    <childcount>0</childcount>
+    <type>EnumValue</type>
+    <name>ScaleTo</name>
+    <token>ScaleTo</token>
+    <scope>GraphicMoveMode</scope>
+  </GraphicMoveMode.ScaleTo>
+  <GraphicMoveMode.ScaleFrom>
+    <signature>GraphicMoveMode.ScaleFrom</signature>
+    <childcount>0</childcount>
+    <type>EnumValue</type>
+    <name>ScaleFrom</name>
+    <token>ScaleFrom</token>
+    <scope>GraphicMoveMode</scope>
+  </GraphicMoveMode.ScaleFrom>
+  <GraphicMover>
+    <signature>GraphicMover</signature>
+    <childcount>11</childcount>
+    <type>Class</type>
+    <name>GraphicMover</name>
+    <token>public class GraphicMover : MonoBehaviour </token>
+    <scope></scope>
+  </GraphicMover>
+  <GraphicMover.Reset_x0028__x0029_>
+    <signature>GraphicMover.Reset()</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>Reset</name>
+    <token>public void Reset()</token>
+    <scope>GraphicMover</scope>
+    <comments>
+      <summary>Resets transform.position or transform.localScale based on the GraphicMoveMode selected.</summary>
+    </comments>
+  </GraphicMover.Reset_x0028__x0029_>
+  <GraphicMover.Move_x0028__x0029_>
+    <signature>GraphicMover.Move()</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>Move</name>
+    <token>public void Move()</token>
+    <scope>GraphicMover</scope>
+    <comments>
+      <summary>Wrapper for iTween.MoveTo/From(gameObject, args) and iTween.ScaleTo/From(gameObject, args) based on the GraphicMoveMode selected.</summary>
+    </comments>
+  </GraphicMover.Move_x0028__x0029_>
   <Link>
     <signature>Link</signature>
     <childcount>6</childcount>
@@ -284,7 +402,7 @@
   </Link.DrawLink_x0028_Vector3_x002C__x0020_Vector3_x0029_>
   <Node>
     <signature>Node</signature>
-    <childcount>32</childcount>
+    <childcount>33</childcount>
     <type>Class</type>
     <name>Node</name>
     <token>public class Node : MonoBehaviour </token>
@@ -330,6 +448,14 @@
     <token>public List&lt;Node&gt; LinkedNodes { get; }</token>
     <scope>Node</scope>
   </Node.LinkedNodes>
+  <Node.IsInitialized>
+    <signature>Node.IsInitialized</signature>
+    <childcount>0</childcount>
+    <type>Property</type>
+    <name>IsInitialized</name>
+    <token>public bool IsInitialized { get; }</token>
+    <scope>Node</scope>
+  </Node.IsInitialized>
   <Node.InitNode_x0028__x0029_>
     <signature>Node.InitNode()</signature>
     <childcount>0</childcount>
@@ -373,6 +499,9 @@ public class Obstacle : MonoBehaviour </token>
     <name>PlayerInput</name>
     <token>public class PlayerInput : MonoBehaviour </token>
     <scope></scope>
+    <comments>
+      <summary>Processes raw player input</summary>
+    </comments>
   </PlayerInput>
   <PlayerInput.HorizontalThrow>
     <signature>PlayerInput.HorizontalThrow</signature>
@@ -408,13 +537,16 @@ public class Obstacle : MonoBehaviour </token>
   </PlayerInput.GetKeyInput_x0028__x0029_>
   <PlayerManager>
     <signature>PlayerManager</signature>
-    <childcount>8</childcount>
+    <childcount>10</childcount>
     <type>Class</type>
     <name>PlayerManager</name>
     <token>[RequireComponent(typeof(CharacterMover))]
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerManager : Singleton&lt;PlayerManager&gt; </token>
     <scope></scope>
+    <comments>
+      <summary>Responsible for converting player input into character movement.</summary>
+    </comments>
   </PlayerManager>
   <PlayerManager.CharacterMover>
     <signature>PlayerManager.CharacterMover</signature>
@@ -432,6 +564,40 @@ public class PlayerManager : Singleton&lt;PlayerManager&gt; </token>
     <token>public PlayerInput PlayerInput { get; }</token>
     <scope>PlayerManager</scope>
   </PlayerManager.PlayerInput>
+  <PlayerManager.PlayerNode>
+    <signature>PlayerManager.PlayerNode</signature>
+    <childcount>0</childcount>
+    <type>Property</type>
+    <name>PlayerNode</name>
+    <token>public Node PlayerNode { get; }</token>
+    <scope>PlayerManager</scope>
+  </PlayerManager.PlayerNode>
+  <PostProcessingProfileManager>
+    <signature>PostProcessingProfileManager</signature>
+    <childcount>5</childcount>
+    <type>Class</type>
+    <name>PostProcessingProfileManager</name>
+    <token>[RequireComponent(typeof(PostProcessVolume))]
+public class PostProcessingProfileManager : MonoBehaviour </token>
+    <scope></scope>
+    <comments>
+      <summary>Post-Processing profile manager use to swap between different profiles.</summary>
+    </comments>
+  </PostProcessingProfileManager>
+  <PostProcessingProfileManager.EnableBlurProfile_x0028_bool_x0029_>
+    <signature>PostProcessingProfileManager.EnableBlurProfile(bool)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>EnableBlurProfile</name>
+    <token>public void EnableBlurProfile(bool state)</token>
+    <scope>PostProcessingProfileManager</scope>
+    <comments>
+      <summary>Switches between the default and blur post-processing profiles.</summary>
+    </comments>
+    <params>
+      <state>bool</state>
+    </params>
+  </PostProcessingProfileManager.EnableBlurProfile_x0028_bool_x0029_>
   <Spinner>
     <signature>Spinner</signature>
     <childcount>4</childcount>
@@ -439,5 +605,8 @@ public class PlayerManager : Singleton&lt;PlayerManager&gt; </token>
     <name>Spinner</name>
     <token>public class Spinner : MonoBehaviour </token>
     <scope></scope>
+    <comments>
+      <summary>Wrapper class for iTween.RotateBy(gameObject, args), used to rotate gameObject in the scene.</summary>
+    </comments>
   </Spinner>
 </members>

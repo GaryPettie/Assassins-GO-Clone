@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Controls character movement and 
+/// </summary>
 public class CharacterMover : MonoBehaviour
 {
 	public delegate void OnCharacterMove ();
@@ -20,7 +23,11 @@ public class CharacterMover : MonoBehaviour
 	[SerializeField] float moveDelay = 0f;
 	[SerializeField] float turnDelay = 0f;
 
-
+	/// <summary>
+	/// Moves the player to the provided destination after a specified delay.
+	/// </summary>
+	/// <param name="destinationPos"></param>
+	/// <param name="delayTime"></param>
 	public void Move (Vector3 destinationPos, float delayTime = 0f) {
 		StartCoroutine(MoveRoutine(destinationPos, delayTime));
 	}
