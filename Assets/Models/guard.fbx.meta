@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1453f0c2d561cf44fb64d0f54258e4e5
+guid: 844c1c757ac0a404a8ca9c7aab0d1dc9
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
@@ -7,8 +7,28 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: lineMat
-    second: {fileID: 2100000, guid: 46aaa35b73513e841af8eaaf64de34fe, type: 2}
+      name: gearMat
+    second: {fileID: 2100000, guid: 5fd23e65f38095c45bccc840c8859055, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: guardTempMat
+    second: {fileID: 2100000, guid: 7cf0be3b10879e04ca0b00b10aaaf4fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gunMat
+    second: {fileID: 2100000, guid: a5d0f2bec0d47414bbd26c2f7326c62f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: skinMat
+    second: {fileID: 2100000, guid: e267aafa0c135dd49bd1d6f59c7a7448, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: standMat
+    second: {fileID: 2100000, guid: 9a47b03517435f34a80bc4d3cf1d8531, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -39,7 +59,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 10
+    globalScale: 100
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -49,7 +69,7 @@ ModelImporter:
     importCameras: 1
     importLights: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
@@ -86,7 +106,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 10
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

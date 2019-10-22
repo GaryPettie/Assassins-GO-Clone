@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1453f0c2d561cf44fb64d0f54258e4e5
+guid: a73cec4f7fb060a47b196897bdc6eaf9
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
@@ -7,8 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: lineMat
-    second: {fileID: 2100000, guid: 46aaa35b73513e841af8eaaf64de34fe, type: 2}
+      name: glassMat
+    second: {fileID: 2100000, guid: 9ec2f7ff6a1d5074a93a5246577101ef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: secondaryMat
+    second: {fileID: 2100000, guid: 8d9acd00f274ec949a7e5a688779aa67, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -39,7 +44,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 10
+    globalScale: 50
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -49,7 +54,7 @@ ModelImporter:
     importCameras: 1
     importLights: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
@@ -86,7 +91,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 10
+    globalScale: 50
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50fe2c81f4fa35641b6545374e62beb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowPrefab: {fileID: -927199367670048503, guid: d64a67fe1de4e92459108757dd5c98fe,
+  arrowPrefab: {fileID: 5190159162742720521, guid: ba15f2a705f4d914c95bafe7d07ea7d7,
     type: 3}
   scale: 1
   startDistance: 0.3

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1453f0c2d561cf44fb64d0f54258e4e5
+guid: 5cc7e3168d88f244091be72ddb52407f
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
@@ -7,8 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: lineMat
-    second: {fileID: 2100000, guid: 46aaa35b73513e841af8eaaf64de34fe, type: 2}
+      name: labelMat
+    second: {fileID: 2100000, guid: 2cba0e02244f48941b010dfcb188b1d5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plaqueMat
+    second: {fileID: 2100000, guid: 07d98b4af62f82c438adafc80f3f5db7, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -39,7 +44,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 10
+    globalScale: 100
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -49,7 +54,7 @@ ModelImporter:
     importCameras: 1
     importLights: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
@@ -86,7 +91,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 10
+    globalScale: 100
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
