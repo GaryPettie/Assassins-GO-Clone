@@ -28,10 +28,11 @@ public class Board : Singleton<Board> {
 	[SerializeField]bool isDrawn;
 	public bool IsDrawn { get { return isDrawn; } }
 
-	CharacterMover player;
+	PlayerMover player;
 
-	void Awake () {
-		player = FindObjectOfType<CharacterMover>();
+	protected override void Awake () {
+		base.Awake();
+		player = FindObjectOfType<PlayerMover>();
 		GetNodeList();
 	}
 
@@ -50,11 +51,11 @@ public class Board : Singleton<Board> {
 	}
 
 	void OnEnable () {
-		CharacterMover.notifyCharacterMoveObservers += UpdatePlayerNode;
+		PlayerMover.notifyPlayerMoveObservers += UpdatePlayerNode;
 	}
 
 	void OnDisable () {
-		CharacterMover.notifyCharacterMoveObservers -= UpdatePlayerNode;
+		PlayerMover.notifyPlayerMoveObservers -= UpdatePlayerNode;
 	}
 
 	public void InitBoard () {

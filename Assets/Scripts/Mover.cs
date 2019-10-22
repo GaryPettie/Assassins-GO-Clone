@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Controls character movement and 
-/// </summary>
-public class CharacterMover : MonoBehaviour
-{
-	public delegate void OnCharacterMove ();
-	public static OnCharacterMove notifyCharacterMoveObservers;
 
+/// <summary>
+/// Responsible for moving a character.
+/// </summary>
+public class Mover : MonoBehaviour
+{
 	private bool isMoving;
 	public bool IsMoving { get { return isMoving; } set { isMoving = value; } }
 
-	[SerializeField] Vector3 destination;
+	Vector3 destination;
+	[SerializeField] bool enableLookRotation = false;
 	[SerializeField] float minTargetDistance = 0.01f;
 
 	[SerializeField] float moveSpeed = 1.5f;
@@ -23,38 +22,32 @@ public class CharacterMover : MonoBehaviour
 	[SerializeField] float moveDelay = 0f;
 	[SerializeField] float turnDelay = 0f;
 
-	Compass compass;
-
-	void Awake () {
-		compass = FindObjectOfType<Compass>();
-	}
-
 	/// <summary>
 	/// Moves the player to the provided destination after a specified delay.
 	/// </summary>
 	/// <param name="destinationPos"></param>
 	/// <param name="delayTime"></param>
 	public void Move (Vector3 destinationPos, float delayTime = 0f) {
+		if (IsMoving) {
+			return;
+		}
 		StartCoroutine(MoveRoutine(destinationPos, delayTime));
 	}
-		
-	IEnumerator MoveRoutine (Vector3 destinationPos, float delayTime = 0f) {
-		IsMoving = true;
 
-		if (compass != null) {
-			compass.ShowArrows(false);
-		}
+	protected virtual IEnumerator MoveRoutine (Vector3 destinationPos, float delayTime = 0f) {
+		IsMoving = true;
 
 		destination = destinationPos;
 		yield return new WaitForSeconds(delayTime);
 
-		//TODO Disabled this, as it currently breaks the compass. 
-		//iTween.LookTo(gameObject, iTween.Hash(
-		//	"looktarget", destinationPos,
-		//	"delay", turnDelay,
-		//	"easetype", turnEaseType,
-		//	"time", turnSpeed
-		//));
+		if (enableLookRotation) {
+			iTween.LookTo(gameObject, iTween.Hash(
+				"looktarget", destinationPos,
+				"delay", turnDelay,
+				"easetype", turnEaseType,
+				"time", turnSpeed
+			));
+		}
 
 		iTween.MoveTo(gameObject, iTween.Hash(
 			"position", destinationPos,
@@ -70,13 +63,5 @@ public class CharacterMover : MonoBehaviour
 		iTween.Stop(gameObject);
 		transform.position = destinationPos;
 		IsMoving = false;
-		
-		if (notifyCharacterMoveObservers != null) {
-			notifyCharacterMoveObservers();
-		}
-
-		if (compass != null) {
-			compass.ShowArrows(true);
-		}
 	}
 }

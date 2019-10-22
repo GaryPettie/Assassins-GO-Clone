@@ -32,7 +32,8 @@ public class GameManager : Singleton<GameManager> {
 	public bool HasLevelFinished { get { return hasLevelFinished; } set { hasLevelFinished = value; } }
 
 
-	void Awake () {
+	protected override void Awake () {
+		base.Awake();
 		board = FindObjectOfType<Board>();
 		player = FindObjectOfType<PlayerManager>();
 	}

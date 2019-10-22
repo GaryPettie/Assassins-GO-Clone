@@ -74,19 +74,19 @@ public class Compass : MonoBehaviour {
 			return;
 		}
 
-		if (playerManager.PlayerNode == null) {
+		if (playerManager.CurrentNode == null) {
 			Debug.LogWarning("[Compass](ShowArrows) Warning: PlayerManager.PlayerNode has not been set.");
 			return;
 		}
 
 		for (int i = 0; i < arrows.Count; i++) {
-			Node neighbour = playerManager.PlayerNode.FindNeighbourAt(Board.directions[i]);
+			Node neighbour = playerManager.CurrentNode.FindNeighbourAt(Board.directions[i]);
 
 			if (neighbour == null || !state) {
 				arrows[i].SetActive(false);
 			}
 			else {
-				bool activeState = playerManager.PlayerNode.LinkedNodes.Contains(neighbour);
+				bool activeState = playerManager.CurrentNode.LinkedNodes.Contains(neighbour);
 				arrows[i].SetActive(activeState);
 			}
 		}
