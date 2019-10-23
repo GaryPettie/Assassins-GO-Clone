@@ -51,11 +51,11 @@ public class Board : Singleton<Board> {
 	}
 
 	void OnEnable () {
-		PlayerMover.notifyPlayerMoveObservers += UpdatePlayerNode;
+		Mover.notifyCharacterMoveObservers += UpdatePlayerNode;
 	}
 
 	void OnDisable () {
-		PlayerMover.notifyPlayerMoveObservers -= UpdatePlayerNode;
+		Mover.notifyCharacterMoveObservers -= UpdatePlayerNode;
 	}
 
 	public void InitBoard () {

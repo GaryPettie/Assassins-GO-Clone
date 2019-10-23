@@ -6,11 +6,8 @@ using UnityEngine;
 /// Inherits from Mover.
 /// In addition to moving the player, the player compass is also updated.
 /// </summary>
-public class PlayerMover : Mover
+public class PlayerMover : Mover 
 {
-	public delegate void OnCharacterMove ();
-	public static OnCharacterMove notifyPlayerMoveObservers;
-
 	Compass compass;
 
 	void Awake () {
@@ -24,14 +21,8 @@ public class PlayerMover : Mover
 
 		yield return StartCoroutine(base.MoveRoutine(destinationPos, delayTime));
 
-		if (notifyPlayerMoveObservers != null) {
-			notifyPlayerMoveObservers();
-		}
-
 		if (compass != null) {
 			compass.ShowArrows(true);
 		}
-
-		yield return null;
 	}
 }

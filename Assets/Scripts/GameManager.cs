@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using SOG.Utilities;
+using System.Linq;
+
+[System.Serializable]
+public enum Turn { Player, Enemy }
 
 /// <summary>
 /// Handles game logic and flow.
@@ -31,11 +35,16 @@ public class GameManager : Singleton<GameManager> {
 	bool hasLevelFinished = false;
 	public bool HasLevelFinished { get { return hasLevelFinished; } set { hasLevelFinished = value; } }
 
+	List<EnemyManager> enemies;
+
+	Turn currentTurn = Turn.Player;
+	public Turn CurrentTurn { get { return currentTurn; } }
 
 	protected override void Awake () {
 		base.Awake();
 		board = FindObjectOfType<Board>();
 		player = FindObjectOfType<PlayerManager>();
+		enemies = FindObjectsOfType<EnemyManager>().ToList();
 	}
 
 	void Start () {
@@ -64,6 +73,52 @@ public class GameManager : Singleton<GameManager> {
 			return true;
 		}
 		return false;
+	}
+
+	public void UpdateTurn () {
+		if (player != null) {
+			//Debug.Log(currentTurn.ToString() + " :: " + player.IsTurnComplete + " :: " + isEnemyTurnComplete());
+			switch (currentTurn) {
+				case Turn.Player:
+					if (player.IsTurnComplete) {
+						PlayEnemyTurn();
+					}
+					break;
+				case Turn.Enemy:
+					if (isEnemyTurnComplete()) {
+						PlayPlayerTurn();
+					}
+					break;
+				default:
+					Debug.LogError("[GameManager](UpdateTurn) Error: Turn type not recognized.");
+					break;
+			}
+		}
+	}
+
+	void PlayPlayerTurn () {
+		currentTurn = Turn.Player;
+		player.IsTurnComplete = false;
+	}
+
+	void PlayEnemyTurn () {
+		currentTurn = Turn.Enemy;
+		foreach (EnemyManager enemy in enemies) {
+			if (enemy != null) {
+				enemy.IsTurnComplete = false;
+				enemy.PlayTurn();
+			}
+		}
+	}
+
+	bool isEnemyTurnComplete () {
+		foreach (EnemyManager enemy in enemies) {
+			if (!enemy.IsTurnComplete) {
+
+				return false;
+			}
+		}
+		return true;
 	}
 
 	IEnumerator RunGameLoop () {

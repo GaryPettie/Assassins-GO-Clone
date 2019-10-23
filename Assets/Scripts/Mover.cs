@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 
 /// <summary>
 /// Responsible for moving a character.
 /// </summary>
 public class Mover : MonoBehaviour
 {
+	public delegate void OnCharacterMove ();
+	public static OnCharacterMove notifyCharacterMoveObservers;
+	public UnityEvent FinishMovementEvent;
+
 	private bool isMoving;
 	public bool IsMoving { get { return isMoving; } set { isMoving = value; } }
 
@@ -63,5 +67,10 @@ public class Mover : MonoBehaviour
 		iTween.Stop(gameObject);
 		transform.position = destinationPos;
 		IsMoving = false;
+
+		FinishMovementEvent.Invoke();
+		if (notifyCharacterMoveObservers != null) {
+			notifyCharacterMoveObservers();
+		}
 	}
 }

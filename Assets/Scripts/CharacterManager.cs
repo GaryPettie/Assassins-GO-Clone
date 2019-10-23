@@ -4,7 +4,7 @@ using UnityEngine;
 using SOG.Utilities;
 
 
-public class CharacterManager : MonoBehaviour {
+public class CharacterManager : TurnManager {
 	protected Mover characterMover;
 	public Mover CharacterMover { get { return characterMover; } }
 	
@@ -20,16 +20,10 @@ public class CharacterManager : MonoBehaviour {
 
 	protected Board board;
 
-	protected virtual void Awake () {
+	protected override void Awake () {
+		base.Awake();
 		board = FindObjectOfType<Board>();
 		characterMover = GetComponent<Mover>();
-	}
-
-	protected virtual void Start () {
-	}
-
-	protected virtual void Update () {
-		
 	}
 
 	public void Move (Vector3 destinationPos, float delayTime = 0f) {

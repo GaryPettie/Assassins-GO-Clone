@@ -9,6 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5230616146758618395}
+  - component: {fileID: 1395274844}
+  - component: {fileID: 1395274845}
+  - component: {fileID: 1395274846}
   m_Layer: 0
   m_Name: Guard
   m_TagString: Untagged
@@ -23,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5230616146758618394}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -31,6 +34,66 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1395274844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5230616146758618394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3eeda4d81f1c57642a38bf43e8cead29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endTurnDelay: 0
+--- !u!114 &1395274845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5230616146758618394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc20f931a2a7fd9499e299db8ab1b1b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FinishMovementEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1395274844}
+        m_MethodName: FinishTurn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  enableLookRotation: 1
+  minTargetDistance: 0.01
+  moveSpeed: 1.5
+  turnSpeed: 0.25
+  moveEaseType: 14
+  turnEaseType: 14
+  moveDelay: 0
+  turnDelay: 0
+  standTime: 1
+--- !u!114 &1395274846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5230616146758618394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e8cc6171edd9004c89b0bc63b8ca2b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5230616147422285124
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66,7 +129,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 844c1c757ac0a404a8ca9c7aab0d1dc9,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 844c1c757ac0a404a8ca9c7aab0d1dc9,
         type: 3}
@@ -76,7 +139,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 844c1c757ac0a404a8ca9c7aab0d1dc9,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 844c1c757ac0a404a8ca9c7aab0d1dc9,
         type: 3}
@@ -91,7 +154,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 844c1c757ac0a404a8ca9c7aab0d1dc9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 844c1c757ac0a404a8ca9c7aab0d1dc9,
         type: 3}

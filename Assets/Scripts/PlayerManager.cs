@@ -8,24 +8,25 @@ using SOG.Utilities;
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerManager : CharacterManager {
 
+	protected PlayerMover playerMover;
+	public PlayerMover PlayerMover { get { return playerMover; } }
+
 	protected PlayerInput playerInput;
 	public PlayerInput PlayerInput { get { return playerInput; } }
 
 	protected override void Awake () {
 		base.Awake();
-
+		playerMover = GetComponent<PlayerMover>();
 		playerInput = GetComponent<PlayerInput>();
 		if (playerInput != null) {
 			playerInput.InputEnabled = true;
 		}
 	}
 
-	protected override void Update () {
-		if (characterMover.IsMoving) {
+	void Update () {		
+		if (characterMover.IsMoving || gameManager.CurrentTurn != Turn.Player) {
 			return;
 		}
-
-		base.Update();
 		
 		if (playerInput != null) {
 			playerInput.GetKeyInput();
