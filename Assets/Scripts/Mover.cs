@@ -16,15 +16,15 @@ public class Mover : MonoBehaviour
 	public bool IsMoving { get { return isMoving; } set { isMoving = value; } }
 
 	Vector3 destination;
-	[SerializeField] bool enableLookRotation = false;
-	[SerializeField] float minTargetDistance = 0.01f;
+	[SerializeField] protected bool enableLookRotation = false;
+	[SerializeField] protected float minTargetDistance = 0.01f;
 
-	[SerializeField] float moveSpeed = 1.5f;
-	[SerializeField] float turnSpeed = 0.25f;
-	[SerializeField] iTween.EaseType moveEaseType = iTween.EaseType.easeInOutSine;
-	[SerializeField] iTween.EaseType turnEaseType = iTween.EaseType.easeInOutSine;
-	[SerializeField] float moveDelay = 0f;
-	[SerializeField] float turnDelay = 0f;
+	[SerializeField] protected float moveSpeed = 1.5f;
+	[SerializeField] protected float turnSpeed = 0.25f;
+	[SerializeField] protected iTween.EaseType moveEaseType = iTween.EaseType.easeInOutSine;
+	[SerializeField] protected iTween.EaseType turnEaseType = iTween.EaseType.easeInOutSine;
+	[SerializeField] protected float moveDelay = 0f;
+	[SerializeField] protected float turnDelay = 0f;
 
 	/// <summary>
 	/// Moves the player to the provided destination after a specified delay.
@@ -45,12 +45,7 @@ public class Mover : MonoBehaviour
 		yield return new WaitForSeconds(delayTime);
 
 		if (enableLookRotation) {
-			iTween.LookTo(gameObject, iTween.Hash(
-				"looktarget", destinationPos,
-				"delay", turnDelay,
-				"easetype", turnEaseType,
-				"time", turnSpeed
-			));
+			FaceDestination(destinationPos);
 		}
 
 		iTween.MoveTo(gameObject, iTween.Hash(
@@ -72,5 +67,15 @@ public class Mover : MonoBehaviour
 		if (notifyCharacterMoveObservers != null) {
 			notifyCharacterMoveObservers();
 		}
+	}
+
+	protected void FaceDestination (Vector3 destinationPos) {
+		iTween.LookTo(gameObject, iTween.Hash(
+			"looktarget", destinationPos,
+			"delay", turnDelay,
+			"easetype", turnEaseType,
+			"time", turnSpeed
+		));
+
 	}
 }

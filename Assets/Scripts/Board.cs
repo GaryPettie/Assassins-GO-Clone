@@ -76,7 +76,8 @@ public class Board : Singleton<Board> {
 	}
 
 	public Node FindNodeAt(Vector3 position) {
-		Vector2Int coordinate = new Vector2Int((int)position.x, (int)position.z);
+		//NOTE: had to use RoundToInt here, as a simple cast to int was causing some issues.
+		Vector2Int coordinate = new Vector2Int(Mathf.RoundToInt(position.x), Mathf.RoundToInt(position.z));
 		return nodes.Find(n => n.Coordinate == coordinate);
 	}
 
