@@ -62,11 +62,11 @@ public class Mover : MonoBehaviour
 		iTween.Stop(gameObject);
 		transform.position = destinationPos;
 		IsMoving = false;
-
-		FinishMovementEvent.Invoke();
+		
 		if (notifyCharacterMoveObservers != null) {
 			notifyCharacterMoveObservers();
 		}
+		FinishMovementEvent.Invoke();
 	}
 
 	protected void FaceDestination (Vector3 destinationPos) {

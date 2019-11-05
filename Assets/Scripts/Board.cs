@@ -17,7 +17,7 @@ public class Board : Singleton<Board> {
 	public List<Node> Nodes { get { return nodes; } }
 
 	Node playerNode;
-	public Node PlayerNode { get { return playerNode; } }
+	public Node PlayerNode { get { return playerNode; }	}
 
 	Node startNode;
 	public Node StartNode { get { return startNode; } }

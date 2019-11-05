@@ -6,6 +6,7 @@ using SOG.Utilities;
 
 [RequireComponent(typeof(EnemyMover))]
 [RequireComponent(typeof(EnemySensor))]
+[RequireComponent(typeof(EnemyAttack))]
 public class EnemyManager : CharacterManager {
 
 	enum EnemyType { Stationary, Patrol }
@@ -18,10 +19,14 @@ public class EnemyManager : CharacterManager {
 	protected EnemySensor enemySensor;
 	public EnemySensor EnemySensor { get { return enemySensor; } }
 
+	protected EnemyAttack enemyAttack;
+	public EnemyAttack EnemyAttack { get { return enemyAttack; } }
+
 	protected override void Awake () {
 		base.Awake();
 		enemyMover = GetComponent<EnemyMover>();
 		enemySensor = GetComponent<EnemySensor>();
+		enemyAttack = GetComponent<EnemyAttack>();
 	}
 
 	public void PlayTurn () {
@@ -29,13 +34,25 @@ public class EnemyManager : CharacterManager {
 	}
 
 	IEnumerator PlayTurnRoutine () {
-		enemySensor.UpdateSensor();
+		if (gameManager != null && !gameManager.IsGameOver) {
+			enemySensor.UpdateSensor();
 
-		//attack
+			yield return new WaitForSeconds(endTurnDelay);
 
-		//move
-		EnemyManager enemy = GetComponent<EnemyManager>();
-		yield return new WaitForSeconds(endTurnDelay);
-		enemyMover.MoveOneTurn();
+			if (enemySensor.FoundPlayer) {
+				gameManager.LoseLevel();
+
+				Vector3 playerPos = board.PlayerNode.transform.position;
+				enemyMover.Move(playerPos, 0f);
+				while (enemyMover.IsMoving) {
+					yield return null;
+				}
+			
+				enemyAttack.Attack();
+			}
+			else {
+				enemyMover.MoveOneTurn();
+			}
+		}
 	}
 }

@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using SOG.Utilities;
-
+using UnityEngine.Events;
 
 [RequireComponent(typeof(PlayerMover))]
 [RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(PlayerDeath))]
 public class PlayerManager : CharacterManager {
+
+	public delegate void OnPlayerDeath();
+	public static OnPlayerDeath notifyPlayerDeathObservers;
 
 	protected PlayerMover playerMover;
 	public PlayerMover PlayerMover { get { return playerMover; } }
@@ -56,4 +60,10 @@ public class PlayerManager : CharacterManager {
 			}
 		}
 	}
+
+	public void Die () {
+		if (notifyPlayerDeathObservers != null) {
+			notifyPlayerDeathObservers();
+		}
+	}	
 }

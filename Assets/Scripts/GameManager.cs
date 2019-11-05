@@ -17,6 +17,7 @@ public class GameManager : Singleton<GameManager> {
 	public UnityEvent startLevelEvent;
 	public UnityEvent playLevelEvent;
 	public UnityEvent endLevelEvent;
+	public UnityEvent loseLevelEvent;
 	
 	[SerializeField] float delay = 1f;
 
@@ -77,7 +78,6 @@ public class GameManager : Singleton<GameManager> {
 
 	public void UpdateTurn () {
 		if (player != null) {
-			//Debug.Log(currentTurn.ToString() + " :: " + player.IsTurnComplete + " :: " + isEnemyTurnComplete());
 			switch (currentTurn) {
 				case Turn.Player:
 					if (player.IsTurnComplete) {
@@ -122,6 +122,7 @@ public class GameManager : Singleton<GameManager> {
 	}
 
 	IEnumerator RunGameLoop () {
+		Debug.Log("Run Game Loop");
 		yield return StartCoroutine(StartLevelRoutine());
 		yield return StartCoroutine(PlayLevelRoutine());
 		yield return StartCoroutine(EndLevelRoutine());
@@ -181,6 +182,26 @@ public class GameManager : Singleton<GameManager> {
 			//hasLevelFinished = true;
 			yield return null;
 		}
+
+		RestartLevel();
+	}
+
+	public void LoseLevel () {
+		StartCoroutine(LoseLevelRoutine());
+	}
+
+	IEnumerator LoseLevelRoutine () {
+		Debug.Log("Level Lost");
+		isGameOver = true;
+
+		yield return new WaitForSeconds(1.5f);
+
+		if (loseLevelEvent != null) {
+			loseLevelEvent.Invoke();
+		}
+
+		//TODO Don't hard code this number here.  It's there to wait for animations to complete so maybe access that time directly?
+		yield return new WaitForSeconds(1f);
 
 		RestartLevel();
 	}

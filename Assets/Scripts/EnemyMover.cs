@@ -65,7 +65,7 @@ public class EnemyMover : Mover
 			while (IsMoving) {
 				yield return null;
 			}
-			
+
 			if (nextDestinationNode == null || !destinationNode.LinkedNodes.Contains(nextDestinationNode)) {
 				destination = startPosition;
 				FaceDestination(startPosition);
