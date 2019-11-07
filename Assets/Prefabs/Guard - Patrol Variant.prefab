@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 5230616146758618394, guid: 2874dbc7a5201264592b5487b94bfcfa,
         type: 3}
       propertyPath: m_Name
-      value: Guard - Patrol
+      value: Guard - Patrol Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5230616146758618395, guid: 2874dbc7a5201264592b5487b94bfcfa,
         type: 3}
@@ -71,5 +71,10 @@ PrefabInstance:
       propertyPath: movementType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2561381290793918609, guid: 2874dbc7a5201264592b5487b94bfcfa,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 30a671b341e21f74195328a0b3b7bc94, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2874dbc7a5201264592b5487b94bfcfa, type: 3}

@@ -61,9 +61,25 @@ public class PlayerManager : CharacterManager {
 		}
 	}
 
+	public override void FinishTurn () {
+		CaptureEnemies();
+		base.FinishTurn();
+	}
+
+	public void CaptureEnemies () {
+		if (board != null) {
+			List<EnemyManager> enemies = board.FindEnemiesAt(board.PlayerNode);
+			if (enemies.Count != 0) {
+				foreach (EnemyManager enemy in enemies) {
+					enemy.Die();
+				}
+			}
+		}
+	}
+
 	public void Die () {
 		if (notifyPlayerDeathObservers != null) {
 			notifyPlayerDeathObservers();
 		}
-	}	
+	}
 }

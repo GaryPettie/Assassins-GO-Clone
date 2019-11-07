@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1395274845}
   - component: {fileID: 1395274846}
   - component: {fileID: -3720635667752829198}
+  - component: {fileID: 2512978516540726262}
   m_Layer: 0
   m_Name: Guard
   m_TagString: Untagged
@@ -76,7 +77,7 @@ MonoBehaviour:
         m_CallState: 2
   enableLookRotation: 1
   minTargetDistance: 0.01
-  moveSpeed: 1.5
+  moveSpeed: 2
   turnSpeed: 0.25
   moveEaseType: 14
   turnEaseType: 14
@@ -109,6 +110,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f228415085416643a44e8bb5457cb54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2512978516540726262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5230616146758618394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7740a7abe9787f141877d060ec77b680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offscreenOffset: {x: 0, y: 7, z: 0}
+  deathDelay: 0
+  offscreenDelay: 1
+  iTweenDelay: 0
+  moveTime: 0.75
+  easeType: 14
+  anim: {fileID: 0}
 --- !u!1001 &5230616147422285124
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -37,6 +37,8 @@ public class GameManager : Singleton<GameManager> {
 	public bool HasLevelFinished { get { return hasLevelFinished; } set { hasLevelFinished = value; } }
 
 	List<EnemyManager> enemies;
+	public List<EnemyManager> Enemies { get { return enemies; } }
+
 
 	Turn currentTurn = Turn.Player;
 	public Turn CurrentTurn { get { return currentTurn; } }
@@ -85,7 +87,7 @@ public class GameManager : Singleton<GameManager> {
 					}
 					break;
 				case Turn.Enemy:
-					if (isEnemyTurnComplete()) {
+					if (!areAllEnemiesDead() && isEnemyTurnComplete()) {
 						PlayPlayerTurn();
 					}
 					break;
@@ -104,7 +106,7 @@ public class GameManager : Singleton<GameManager> {
 	void PlayEnemyTurn () {
 		currentTurn = Turn.Enemy;
 		foreach (EnemyManager enemy in enemies) {
-			if (enemy != null) {
+			if (enemy != null && !enemy.IsDead) {
 				enemy.IsTurnComplete = false;
 				enemy.PlayTurn();
 			}
@@ -113,8 +115,20 @@ public class GameManager : Singleton<GameManager> {
 
 	bool isEnemyTurnComplete () {
 		foreach (EnemyManager enemy in enemies) {
-			if (!enemy.IsTurnComplete) {
+			if (enemy.IsDead) {
+				continue;
+			}
 
+			if (!enemy.IsTurnComplete) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	bool areAllEnemiesDead () {
+		foreach (EnemyManager enemy in enemies) {
+			if (!enemy.IsDead) {
 				return false;
 			}
 		}

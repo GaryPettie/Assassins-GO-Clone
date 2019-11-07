@@ -25,15 +25,27 @@ public class Board : Singleton<Board> {
 	Node goalNode;
 	public Node GoalNode { get { return goalNode; } }
 
-	[SerializeField]bool isDrawn;
+	bool isDrawn;
 	public bool IsDrawn { get { return isDrawn; } }
 
 	PlayerMover player;
+
+	[SerializeField] Transform capturePointParent;
+
+	List<Transform> capturePositions = new List<Transform>();
+	public List<Transform> CapturePositions { get { return capturePositions; } }
+
+	int currentCaptureIndex	= 0;
+	public int CurrentCaptureIndex { get { return currentCaptureIndex; } set { currentCaptureIndex = value; } }
 
 	protected override void Awake () {
 		base.Awake();
 		player = FindObjectOfType<PlayerMover>();
 		GetNodeList();
+
+		foreach (Transform child in capturePointParent) {
+			capturePositions.Add(child);
+		}
 	}
 
 	void Update () {
@@ -86,6 +98,20 @@ public class Board : Singleton<Board> {
 			return FindNodeAt(player.transform.position);
 		}
 		return null;
+	}
+
+	public List<EnemyManager> FindEnemiesAt (Node node) {
+		List<EnemyManager> foundEnemies = new List<EnemyManager>();
+		GameManager gameManager = FindObjectOfType<GameManager>();
+		List<EnemyManager> enemies = gameManager.Enemies;
+
+		foreach (EnemyManager enemy in enemies) {
+			if (enemy.CurrentNode == node) {
+				foundEnemies.Add(enemy);
+			}
+		}
+
+		return foundEnemies;
 	}
 
 	public void UpdatePlayerNode () {
